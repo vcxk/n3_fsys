@@ -89,10 +89,12 @@ const href = ref(null)
 
 const data = ref(null)
 const dirs = ref(null)
-const depDirs = ref([])
+const depDirs = ref((useRoute().params.path || []).filter((e)=> e.length != 0))
 
 const qrvisible = ref(false)
 const qrvalue = ref(null)
+
+console.log(depDirs)
 
 if (process.server) {
     for (const net of os.networkInterfaces()['en0']) {

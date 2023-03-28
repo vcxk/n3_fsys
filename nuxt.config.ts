@@ -3,5 +3,5 @@ export default defineNuxtConfig({
     modules:['@element-plus/nuxt'],
     devServer: {
         port: parseInt(process.env.PORT || '')
-    }
+    },
 })
