@@ -11,6 +11,9 @@ export default defineEventHandler((e) => {
     // let spath = (e.context.params as any)['_']
     let dir = getFilePath(e)
     let igonrefiles = ['.DS_Store']
+    if (fs.statSync(dir).isSymbolicLink()) {
+        dir = fs.readlinkSync(dir);
+    }
     let files = fs.readdirSync(dir).filter((n) => igonrefiles.indexOf(n) == -1)
     let stats = files.map((name) => {
         let stat = fs.lstatSync(path.resolve(dir,name))
